@@ -1,10 +1,10 @@
-import { QrCodeGenerator } from "@/components/qr-code-generator";
+import { ReviewRating } from "@/components/review-rating";
 import React from "react";
 
 function page() {
 	return (
 		<div>
-			<QrCodeGenerator />
+			<ReviewRating />
 		</div>
 	);
 }
