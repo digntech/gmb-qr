@@ -87,37 +87,13 @@
 	}
 }
 
-.google-border {
-	width: 300px;
-	padding: 20px;
-	text-align: center;
-	position: relative;
-	background-color: white;
-}
 .border-google {
 	border-left: 4px solid #34a853;
 	border-top: 4px solid #4285f4;
 	border-bottom: 4px solid #ea4335;
 	border-right: 4px solid #fbbc05;
 }
-.google-border::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: linear-gradient(
-		to right,
-		#4285f4 25%,
-		#34a853 25%,
-		#34a853 50%,
-		#fbbc05 50%,
-		#fbbc05 75%,
-		#ea4335 75%
-	);
-	padding: 5px;
-	-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-	-webkit-mask-composite: xor;
-	mask-composite: exclude;
+
+body {
+	background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }

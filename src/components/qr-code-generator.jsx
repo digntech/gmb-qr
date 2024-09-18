@@ -16,6 +16,7 @@ export function QrCodeGenerator() {
 	const [selectedPlace, setSelectedPlace] = useState(null);
 	const [customText, setCustomText] = useState("PLEASE LEAVE US A REVIEW");
 	const [businessName, setBusinessName] = useState("CUSTOM NAME");
+	const [uniqueId, setUniqueId] = useState("");
 	const autocompleteService = useRef(null);
 	const placesService = useRef(null);
 	const qrCodeRef = useRef(null);
@@ -55,14 +56,32 @@ export function QrCodeGenerator() {
 		}
 	};
 
-	const handleSelect = (placeId) => {
+	const handleSelect = async (placeId) => {
 		if (placesService.current) {
-			placesService.current.getDetails({ placeId: placeId }, (place, status) => {
+			placesService.current.getDetails({ placeId: placeId }, async (place, status) => {
 				if (status === window.google.maps.places.PlacesServiceStatus.OK) {
 					setSelectedPlace(place);
 					setSearchTerm(place.name);
 					setBusinessName(place.name.toUpperCase());
 					setSuggestions([]);
+
+					// Call our API to create or retrieve the business entry
+					try {
+						const response = await fetch("/api/business", {
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify({
+								gmbId: place.place_id,
+								businessName: place.name,
+							}),
+						});
+						const data = await response.json();
+						setUniqueId(data.uniqueId);
+					} catch (error) {
+						console.error("Error creating/retrieving business:", error);
+					}
 				}
 			});
 		}
@@ -124,7 +143,8 @@ export function QrCodeGenerator() {
 
 	const handleShare = () => {
 		if (selectedPlace) {
-			const reviewUrl = `https://search.google.com/local/writereview?placeid=${selectedPlace.place_id}`;
+			// const reviewUrl = `https://search.google.com/local/writereview?placeid=${selectedPlace.place_id}`;
+			const reviewUrl = `https://essyqr.in/b/${uniqueId}`;
 			if (navigator.share) {
 				navigator.share({
 					title: `Review ${selectedPlace.name}`,
@@ -142,7 +162,7 @@ export function QrCodeGenerator() {
 			<Card className="w-full max-w-md">
 				<CardHeader>
 					<CardTitle className="text-2xl font-bold text-center">
-						QR Code Generator
+						EssyQR - GMB QR Generator
 					</CardTitle>
 				</CardHeader>
 				<CardContent className="space-y-4">
@@ -194,7 +214,7 @@ export function QrCodeGenerator() {
 										{customText}
 									</div>
 									<QRCode
-										value={`https://search.google.com/local/writereview?placeid=${selectedPlace.place_id}`}
+										value={`https://essyqr.in/b/${uniqueId}`}
 										size={200}
 										className="m-auto"
 									/>

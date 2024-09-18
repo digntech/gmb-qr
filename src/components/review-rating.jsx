@@ -13,8 +13,9 @@ import {
 } from "@/components/ui/dialog";
 import { Star } from "lucide-react";
 import Image from "next/image";
+import { Input } from "./ui/input";
 
-export function ReviewRating() {
+export function ReviewRating({ business }) {
 	const [rating, setRating] = useState(0);
 	const [review, setReview] = useState("");
 	const [showDialog, setShowDialog] = useState(false);
@@ -23,7 +24,7 @@ export function ReviewRating() {
 		setRating(value);
 		if (value > 3) {
 			window.location.replace(
-				"https://search.google.com/local/writereview?placeid=ChIJP0warDDowokRfvXMkBqL5Cg"
+				`https://search.google.com/local/writereview?placeid=${business?.gmbId}`
 			);
 		}
 	};
@@ -46,6 +47,9 @@ export function ReviewRating() {
 						width={200}
 						height={200}
 					/>
+					<h3 style={{ fontStyle: "italic", textAlign: "center" }}>
+						{business?.businessName}
+					</h3>
 					<CardTitle className="text-2xl font-bold text-center">
 						Rate your experience
 					</CardTitle>
@@ -69,12 +73,15 @@ export function ReviewRating() {
 						))}
 					</div>
 					{rating > 0 && rating < 4 && (
-						<Textarea
-							placeholder="Share details of your experience..."
-							value={review}
-							onChange={(e) => setReview(e.target.value)}
-							rows={4}
-						/>
+						<>
+							<Input type="email" placeholder="Your Email Id" className="w-full" />
+							<Textarea
+								placeholder="Share details of your experience..."
+								value={review}
+								onChange={(e) => setReview(e.target.value)}
+								rows={4}
+							/>
+						</>
 					)}
 					<Button onClick={handleSubmit} className="w-full">
 						Submit review
