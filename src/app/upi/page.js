@@ -1,10 +1,11 @@
-import { QrCodeGenerator } from "@/components/qr-code-generator";
+"use client";
 import React from "react";
+import UPIQRGenerator from "@/components/upi-qr-generator";
 
 function page() {
 	return (
 		<div>
-			<QrCodeGenerator />
+			<UPIQRGenerator />
 		</div>
 	);
 }
