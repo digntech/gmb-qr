@@ -1,11 +1,23 @@
 "use client";
 import UPIQRDisplay from "@/components/upi-pay-display";
-import React from "react";
+import { AppProgressBar } from "next-nprogress-bar";
+import React, { Suspense } from "react";
 
 function page() {
 	return (
 		<div>
-			<UPIQRDisplay />
+			<Suspense
+				fallback={
+					<AppProgressBar
+						height="4px"
+						color="#000000"
+						options={{ showSpinner: false }}
+						shallowRouting
+					/>
+				}
+			>
+				<UPIQRDisplay />
+			</Suspense>
 		</div>
 	);
 }

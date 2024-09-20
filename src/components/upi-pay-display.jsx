@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { QRCode } from "antd";
 import { Button } from "@/components/ui/button";
-import { IndianRupee } from "lucide-react";
 
 export default function UPIQRDisplay() {
 	const searchParams = useSearchParams();
@@ -52,7 +51,7 @@ export default function UPIQRDisplay() {
 			<div className="pt-10">
 				<p className="text-center italic text-sm">This QR is created with</p>
 				<a href="https://essyqr.in" target="__blank">
-					<img src="/essyqr.svg" style={{ width: "150px", margin:"auto" }} />
+					<img src="/essyqr.svg" style={{ width: "150px", margin: "auto" }} />
 				</a>
 			</div>
 		</div>
