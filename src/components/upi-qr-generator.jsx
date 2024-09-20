@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dialog";
 import { Download, Share2 } from "lucide-react";
 import { CardContent, CardHeader, CardTitle } from "./ui/card";
+import html2canvas from "html2canvas";
 
 const formSchema = z.object({
 	upiId: z.string().min(5, "UPI ID must be at least 5 characters"),
@@ -30,6 +31,7 @@ const formSchema = z.object({
 
 export default function UPIQRGenerator() {
 	const [qrValue, setQrValue] = useState("");
+	const [shareLink, setShareLink] = useState("");
 	const [showShareDialog, setShowShareDialog] = useState(false);
 	const {
 		register,
@@ -53,19 +55,30 @@ export default function UPIQRGenerator() {
 				businessName || ""
 			)}&am=${amount}&cu=INR`;
 			setQrValue(upiLink);
+			setShareLink(
+				`https://essyqr.in/p?id=${upiId}&amt=${amount}${
+					businessName ? "&pn=" + encodeURI(businessName) : ""
+				}`
+			);
 		} else {
 			setQrValue("");
 		}
 	}, [watchFields]);
 
 	const handleDownload = () => {
-		const canvas = document.querySelector(".ant-qrcode canvas");
-		if (canvas) {
-			const pngFile = canvas.toDataURL("image/jpg");
-			const downloadLink = document.createElement("a");
-			downloadLink.download = "upi-qr-code.png";
-			downloadLink.href = pngFile;
-			downloadLink.click();
+		const qrCodeElement = document.querySelector(".ant-qrcode");
+		if (qrCodeElement) {
+			html2canvas(qrCodeElement, {
+				backgroundColor: "#ffffff",
+				scale: 5,
+				allowTaint: true,
+			}).then((canvas) => {
+				const pngFile = canvas.toDataURL("image/png");
+				const downloadLink = document.createElement("a");
+				downloadLink.download = "upi-qr-code.png";
+				downloadLink.href = pngFile;
+				downloadLink.click();
+			});
 		}
 	};
 
@@ -74,7 +87,7 @@ export default function UPIQRGenerator() {
 			navigator.share({
 				title: "UPI Payment QR Code",
 				text: "Scan this QR code to make a UPI payment",
-				url: qrValue,
+				url: shareLink,
 			});
 		} else {
 			setShowShareDialog(true);
@@ -178,10 +191,10 @@ export default function UPIQRGenerator() {
 										Copy the link below to share the UPI payment details:
 									</DialogDescription>
 								</DialogHeader>
-								<Input value={qrValue} readOnly />
+								<Input value={shareLink} readOnly />
 								<Button
 									onClick={() => {
-										navigator.clipboard.writeText(qrValue);
+										navigator.clipboard.writeText(shareLink);
 										setShowShareDialog(false);
 									}}
 								>
