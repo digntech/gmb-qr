@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Card, QRCode } from "antd";
+import { QRCode } from "antd";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,7 +14,7 @@ import {
 	DialogDescription,
 } from "@/components/ui/dialog";
 import { Download, Share2 } from "lucide-react";
-import { CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import html2canvas from "html2canvas";
 
 const formSchema = z.object({
@@ -95,7 +95,7 @@ export default function UPIQRGenerator() {
 	};
 
 	return (
-		<div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-100 to-white p-4">
+		<div className="flex items-center justify-center min-h-80 bg-gradient-to-br from-indigo-100 to-white p-4 pb-9">
 			<Card>
 				<CardHeader>
 					<CardTitle className="text-2xl font-bold text-center">

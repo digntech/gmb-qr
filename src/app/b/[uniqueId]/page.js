@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 async function getBusinessData(uniqueId) {
-	const res = await fetch(`http://localhost:3000/api/business?uniqueId=${uniqueId}`, {
+	const res = await fetch(`https://essyqr.in/api/business?uniqueId=${uniqueId}`, {
 		cache: "no-store",
 	});
 	if (!res.ok) {

@@ -95,6 +95,8 @@ export function ReviewRating({ business }) {
 						<DialogDescription>
 							We appreciate you taking the time to share your experience. Your
 							feedback helps us improve our services.
+							<br />
+							You may close this Window.
 						</DialogDescription>
 					</DialogHeader>
 					<Button onClick={() => setShowDialog(false)}>Close</Button>

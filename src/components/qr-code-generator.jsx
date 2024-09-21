@@ -158,7 +158,7 @@ export function QrCodeGenerator() {
 	};
 
 	return (
-		<div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-100 to-white p-4">
+		<div className="flex items-center justify-center bg-gradient-to-br from-indigo-100 to-white p-4" style={{minHeight:"60vh"}}>
 			<Card className="w-full max-w-md">
 				<CardHeader>
 					<CardTitle className="text-2xl font-bold text-center">
