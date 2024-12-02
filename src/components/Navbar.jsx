@@ -40,6 +40,16 @@ export default function Navbar() {
 							>
 								UPI QR Generator
 							</Link>
+							<Link
+								href="/signin"
+								className={`${
+									pathname === "/signin"
+										? "bg-gray-900 text-white"
+										: "text-black-300 hover:bg-gray-700 hover:text-white"
+								} px-3 py-2 rounded-md text-sm font-medium`}
+							>
+								Login
+							</Link>
 						</div>
 					</div>
 					<div className="-mr-2 flex items-center sm:hidden">
@@ -80,6 +90,16 @@ export default function Navbar() {
 							} block px-3 py-2 rounded-md text-base font-medium`}
 						>
 							UPI QR Generator
+						</Link>
+						<Link
+							href="/signin"
+							className={`${
+								pathname === "/upi"
+									? "bg-blue-900 text-white"
+									: "text-gray-300 hover:bg-gray-700 hover:text-white"
+							} block px-3 py-2 rounded-md text-base font-medium`}
+						>
+							Login
 						</Link>
 					</div>
 				</div>
