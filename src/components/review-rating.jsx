@@ -14,11 +14,16 @@ import {
 import { Star } from "lucide-react";
 import Image from "next/image";
 import { Input } from "./ui/input";
+import { useRouter } from "next/navigation";
+
 
 export function ReviewRating({ business }) {
 	const [rating, setRating] = useState(0);
 	const [review, setReview] = useState("");
+	const [submitBtnState, setBtnState] = useState(false)
 	const [showDialog, setShowDialog] = useState(false);
+	const router = useRouter();
+
 
 	const handleRating = (value) => {
 		setRating(value);
@@ -32,7 +37,8 @@ export function ReviewRating({ business }) {
 	const handleSubmit = () => {
 		if (rating < 4) {
 			// Redirect to Google review page for ratings 4 and above
-			setShowDialog(true);
+			router.push('/feedback');
+
 		}
 	};
 
@@ -75,6 +81,8 @@ export function ReviewRating({ business }) {
 					{rating > 0 && rating < 4 && (
 						<>
 							<Input type="email" placeholder="Your Email Id" className="w-full" />
+							<Input type="phone" placeholder="Your Phone Number" className="w-full" />
+
 							<Textarea
 								placeholder="Share details of your experience..."
 								value={review}
@@ -83,12 +91,12 @@ export function ReviewRating({ business }) {
 							/>
 						</>
 					)}
-					<Button onClick={handleSubmit} className="w-full">
+					<Button onClick={handleSubmit} disabled={review.length < 1 ?true:false} className="w-full">
 						Submit review
 					</Button>
 				</CardContent>
 			</Card>
-			<Dialog open={showDialog} onOpenChange={setShowDialog}>
+			{/* <Dialog open={showDialog} onOpenChange={setShowDialog}>
 				<DialogContent>
 					<DialogHeader>
 						<DialogTitle>Thank you for your feedback</DialogTitle>
@@ -101,7 +109,7 @@ export function ReviewRating({ business }) {
 					</DialogHeader>
 					<Button onClick={() => setShowDialog(false)}>Close</Button>
 				</DialogContent>
-			</Dialog>
+			</Dialog> */}
 		</div>
 	);
 }
