@@ -41,9 +41,9 @@ export default function Navbar() {
 								UPI QR Generator
 							</Link>
 							<Link
-								href="/signin"
+								href="/auth"
 								className={`${
-									pathname === "/signin"
+									pathname === "/auth"
 										? "bg-gray-900 text-white"
 										: "text-black-300 hover:bg-gray-700 hover:text-white"
 								} px-3 py-2 rounded-md text-sm font-medium`}
@@ -92,7 +92,7 @@ export default function Navbar() {
 							UPI QR Generator
 						</Link>
 						<Link
-							href="/signin"
+							href="/auth"
 							className={`${
 								pathname === "/upi"
 									? "bg-blue-900 text-white"
