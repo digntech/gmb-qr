@@ -9,13 +9,13 @@ import { InstagramLogoIcon } from '@radix-ui/react-icons'
 import { Facebook } from 'lucide-react'
 import { FacebookFilled, FacebookOutlined, InstagramOutlined } from '@ant-design/icons'
 
-export default function page() {
+export default function Page() {
   const [activeTab, setActiveTab] = useState('facebook')
 
   return (
   <>
     <Navbar />
-    <div className="container-fluid in-h-80 bg-gradient-to-br from-indigo-100 to-white mx-auto px-4 py-8">
+    <div className="container-fluid in-h-80 bg-gradient-to-br from-indigo-100 to-white mx-auto px-4 py-8 pb-8">
         
       <h1 className="text-3xl font-bold text-center mb-8">Social Media QR Code Generator</h1>
       <Tabs value={activeTab} onValueChange={setActiveTab} className="max-w-md mx-auto">
