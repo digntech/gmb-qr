@@ -11,7 +11,7 @@ export default function Footer() {
 							Making QR code generation simple and efficient.
 						</p>
 						<div className="flex space-x-6">
-							<a href="#" className="text-gray-400 hover:text-gray-300">
+							<a href="https://www.facebook.com/digntech/" className="text-gray-400 hover:text-gray-300">
 								<span className="sr-only">Facebook</span>
 								<svg
 									className="h-6 w-6"
@@ -26,7 +26,7 @@ export default function Footer() {
 									/>
 								</svg>
 							</a>
-							<a href="#" className="text-gray-400 hover:text-gray-300">
+							<a href="https://www.instagram.com/dig_n_tech/" className="text-gray-400 hover:text-gray-300">
 								<span className="sr-only">Twitter</span>
 								<svg
 									className="h-6 w-6"
@@ -52,6 +52,14 @@ export default function Footer() {
 											className="text-base text-gray-300 hover:text-white"
 										>
 											GMB QR Generator
+										</Link>
+									</li>
+									<li>
+										<Link
+											href="/social"
+											className="text-base text-gray-300 hover:text-white"
+										>
+											Social QR Generator
 										</Link>
 									</li>
 									<li>
@@ -135,7 +143,7 @@ export default function Footer() {
 								<ul className="mt-4 space-y-4">
 									<li>
 										<a
-											href="#"
+											href="/privacy"
 											className="text-base text-gray-300 hover:text-white"
 										>
 											Privacy
@@ -143,7 +151,7 @@ export default function Footer() {
 									</li>
 									<li>
 										<a
-											href="#"
+											href="/terms"
 											className="text-base text-gray-300 hover:text-white"
 										>
 											Terms

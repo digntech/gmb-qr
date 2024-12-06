@@ -1,33 +1,24 @@
-import mongoose from "mongoose"
+import { MongoClient } from "mongodb";
 
-const MONGODB_URI = process.env.NEXT_PUBLIC_MONGO_URI;
-console.log(process.env.NEXT_PUBLIC_MONGO_URI);
+const uri = process.env.NEXT_PUBLIC_MONGO_URI;
+const options = {};
 
-if (!MONGODB_URI) {
-  throw new Error("Please define the MONGODB_URI environment variable");
+if (!uri) {
+  throw new Error("Please add your MongoDB URI to .env.local");
 }
 
-let cached = global.mongoose;
+let client = new MongoClient(uri, options);
+let clientPromise;
 
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
-}
-
-export async function connectToDatabase() {
-  if (cached.conn) {
-    return cached.conn;
+if (process.env.NODE_ENV === "development") {
+  // In development mode, use a global variable to preserve value across module reloads
+  if (!global._mongoClientPromise) {
+    global._mongoClientPromise = client.connect();
   }
-
-  if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
-    };
-
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose;
-    });
-  }
-
-  cached.conn = await cached.promise;
-  return cached.conn;
+  clientPromise = global._mongoClientPromise;
+} else {
+  // In production mode, create a new client
+  clientPromise = client.connect();
 }
+
+export default clientPromise;

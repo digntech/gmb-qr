@@ -31,6 +31,16 @@ export default function Navbar() {
 								GMB QR Generator
 							</Link>
 							<Link
+								href="/social"
+								className={`${
+									pathname === "/social"
+										? "bg-gray-900 text-white"
+										: "text-black-300 hover:bg-gray-700 hover:text-white"
+								} px-3 py-2 rounded-md text-sm font-medium`}
+							>
+								Social QR Generator
+							</Link>
+							<Link
 								href="/upi"
 								className={`${
 									pathname === "/upi"
@@ -80,6 +90,16 @@ export default function Navbar() {
 							} block px-3 py-2 rounded-md text-base font-medium`}
 						>
 							GMB QR Generator
+						</Link>
+						<Link
+							href="/social"
+							className={`${
+								pathname === "/social"
+									? "bg-blue-900 text-white"
+									: "text-gray-300 hover:bg-gray-700 hover:text-white"
+							} block px-3 py-2 rounded-md text-base font-medium`}
+						>
+							Social QR Generator
 						</Link>
 						<Link
 							href="/upi"

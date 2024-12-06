@@ -20,7 +20,7 @@ export default function Page() {
 
   const handleGoogleSignIn = () => {
 
-    signIn('google', { callbackUrl: '/' });
+    signIn('google', { callbackUrl: '/dashboard' });
   };
 
   const handlePhoneSignIn = async (e) => {
