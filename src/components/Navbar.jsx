@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -21,9 +23,9 @@ export default function Navbar() {
 					<div className="hidden sm:ml-6 sm:flex sm:items-center">
 						<div className="flex space-x-4">
 							<Link
-								href="/"
+								href="/gmb"
 								className={`${
-									pathname === "/"
+									pathname === "/gmb"
 										? "bg-gray-900 text-white"
 										: "text-black-300 hover:bg-gray-700 hover:text-white"
 								} px-3 py-2 rounded-md text-sm font-medium`}
@@ -82,9 +84,9 @@ export default function Navbar() {
 				<div className="sm:hidden">
 					<div className="px-2 pt-2 pb-3 space-y-1">
 						<Link
-							href="/"
+							href="/gmb"
 							className={`${
-								pathname === "/"
+								pathname === "/gmb"
 									? "bg-gray-900 text-white"
 									: "text-gray-300 hover:bg-gray-700 hover:text-white"
 							} block px-3 py-2 rounded-md text-base font-medium`}

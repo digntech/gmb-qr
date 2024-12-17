@@ -97,3 +97,8 @@
 body {
 	background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
+.dotted-bg{
+	background-image:url("https://cdn.prod.website-files.com/628288c5cd3e8411b90a36a4/65761cbdb9d7afd78bb7a288_Hero-pattern-dots.svg");
+	background-position: 2px 47px;
+    background-size: 74px 74px;
+}
